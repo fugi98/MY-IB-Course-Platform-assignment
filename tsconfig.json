@@ -7,8 +7,8 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "Node16",
-    "moduleResolution": "node16",  // Updated for better resolution
+    "module": "esnext",                // Changed to esnext
+    "moduleResolution": "node",        // Changed to node
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",

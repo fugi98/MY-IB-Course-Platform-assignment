@@ -122,7 +122,7 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
       exit={{ opacity: 0, y: -50 }}
       className="fixed bottom-4 right-4 bg-blue-500 text-white p-4 rounded-lg shadow-lg"
     >
-      Keep working on your areas of improvement. You're making progress!
+      Keep working on your areas of improvement. You&apos;re making progress!
     </motion.div>
   );
 
@@ -174,11 +174,11 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
                 <div className={`flex ${isPdfExpanded ? 'flex-col' : 'flex-col'} justify-center items-center`}>
                   <h3 className='text-lg font-semibold font-italic'><i>What is Lorem Ipsum?</i></h3>
                   <p className='text-gray-700'>
-                    <strong>Lorem Ipsum</strong>  is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    <strong>Lorem Ipsum</strong>  is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                   </p>
                   <h3 className='text-lg font-semibold '><i>Why do we use it?</i></h3>
                   <p className='text-gray-700'>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &apos;Content here, content here&apos;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &apos;lorem ipsum&apos; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
                   </p>
                   <h3 className='text-lg font-semibold'><i>Where does it come from?</i></h3>
                   <p className='text-gray-700'>

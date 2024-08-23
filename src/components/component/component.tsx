@@ -17,26 +17,38 @@ To read more about using these font, please visit the Next.js documentation:
 - App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
-export function Component() {
+
+interface ComponentProps {
+  value: number;
+  max: number;
+}
+
+export function Component({ value, max }: ComponentProps) {
+  // Step 3: Calculate values for the SVG circle
+  const radius = 40;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference * (1 - value / max);
+
   return (
     <div className="flex items-center justify-center h-full">
-      <div className="relative w-[90px] h-[90px] md-w-3">
+      <div className="relative w-[90px] h-[90px] md:w-3">
         <svg className="absolute top-0 left-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="40" fill="transparent" stroke="#e5e7eb" strokeWidth="8" />
+          <circle cx="50" cy="50" r={radius} fill="transparent" stroke="#e5e7eb" strokeWidth="8" />
           <circle
             cx="50"
             cy="50"
-            r="40"
+            r={radius}
             fill="transparent"
             stroke="#3cc186"
             strokeWidth="8"
-            strokeDasharray="251.2"
-            strokeDashoffset={251.2 * (1 - 0.75)}
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
           />
         </svg>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl font-bold text-gray-900 dark:text-gray-50">
+          {value}/{max}
         </div>
       </div>
     </div>
-  )
+  );
 }

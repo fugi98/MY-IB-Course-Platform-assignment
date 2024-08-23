@@ -38,7 +38,7 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
   const [expandedCriteria, setExpandedCriteria] = useState<string | null>(null);
   const [evaluation, setEvaluation] = useState<Evaluation | null>(null);
   const [storedResults, setStoredResults] = useLocalStorage<Evaluation | null>('evaluationResults', null);
-  const coursework = useStore((state) => state.coursework);
+  const coursework = useStore((state) => state.courseworks);
   const [isPdfExpanded, setIsPdfExpanded] = useState(false);
   const [pdfDataUrl, setPdfDataUrl] = useState<string>('');
   const [zoom, setZoom] = useState(100); // State for zoom percentage

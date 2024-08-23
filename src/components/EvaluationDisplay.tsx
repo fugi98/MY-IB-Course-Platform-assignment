@@ -12,6 +12,7 @@ import useStore from '@/app/store/useStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Component } from '@/components/component/component';
 
+
 const dummyEvaluation: Evaluation = {
   overallScore: 13,
   remark: "Good",
@@ -71,7 +72,7 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
       setEvaluation(dummyEvaluation);
       setStoredResults(dummyEvaluation);
     }
-
+  
     const generatePdf = async () => {
       try {
         const uint8Array = await createPdfWithLoremIpsum();
@@ -85,7 +86,7 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
       }
     };
     generatePdf();
-  }, [coursework, storedResults]);
+  }, [storedResults, setStoredResults, coursework]); // Add setStoredResults here
 
   const toggleCriteria = (criteria: string) => {
     setExpandedCriteria(expandedCriteria === criteria ? null : criteria);
@@ -168,8 +169,8 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
                   </button>
                 </div>
                 <h2 className="text-xl text-center font-semibold">Lorem Ipsum</h2>
-                <span className='text-gray-700 text-center text-sm'><i>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."<br />
-                  "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</i></span>
+                <span className='text-gray-700 text-center text-sm'><i>&quot;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&quot;<br />
+                &quot;There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...&quot;</i></span>
                 <div className={`flex ${isPdfExpanded ? 'flex-col' : 'flex-col'} justify-center items-center`}>
                   <h3 className='text-lg font-semibold font-italic'><i>What is Lorem Ipsum?</i></h3>
                   <p className='text-gray-700'>
@@ -181,9 +182,9 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
                   </p>
                   <h3 className='text-lg font-semibold'><i>Where does it come from?</i></h3>
                   <p className='text-gray-700'>
-                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.
                     <br />
-                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
                   </p>
                 </div>
               </>

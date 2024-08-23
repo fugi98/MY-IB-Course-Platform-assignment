@@ -7,6 +7,7 @@ import ExploreCoursework from './ExploreCoursework';
 import LeftSidebar from './LeftSidebar';
 import RightSidebar from './RightSidebar';
 import { FaBars } from 'react-icons/fa';
+import Image from 'next/image';
 
 export default function MainContent() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -53,11 +54,13 @@ export default function MainContent() {
               <CombinedFileUploadAndForm />
             </div>
             <div className="lg:w-1/3 hidden lg:flex items-start justify-center">
-              <img
+            <Image
                 src="/images/img1.png"
                 alt="Evaluate your Coursework"
                 className="w-full h-auto object-contain"
                 style={{ maxHeight: '35rem', top: '4rem', position: 'relative' }}
+                width={500}  // Set appropriate width
+                height={400} // Set appropriate height
               />
             </div>
           </div>

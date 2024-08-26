@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { FaChevronLeft, FaChevronDown, FaChevronUp, FaExpand, FaSearchPlus, FaSearchMinus, FaBars } from 'react-icons/fa';
 import { useLocalStorage } from 'react-use';
 import { Button } from '@/components/ui/button';
@@ -41,52 +42,41 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
   const coursework = useStore((state) => state.courseworks);
   const [isPdfExpanded, setIsPdfExpanded] = useState(false);
   const [pdfDataUrl, setPdfDataUrl] = useState<string>('');
-  const [zoom, setZoom] = useState(100); // State for zoom percentage
-  const [isFullScreen, setIsFullScreen] = useState(false); // State for fullscreen
+  const [zoom, setZoom] = useState(100);
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState<number>(0);
-  const [showMessage, setShowMessage] = useState(true); // State to control message visibility
+  const [showMessage, setShowMessage] = useState(true);
+  const router = useRouter();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  const handleIconClick = (link: string) => {
+    router.push(link);
+  };
 
-    handleResize();
 
-    window.addEventListener('resize', handleResize);
+useEffect(() => {
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  handleResize();
 
-  useEffect(() => {
-    if (storedResults) {
-      setEvaluation(storedResults);
-    } else {
-      setEvaluation(dummyEvaluation);
-      setStoredResults(dummyEvaluation);
-    }
-  
-    const generatePdf = async () => {
-      try {
-        const uint8Array = await createPdfWithLoremIpsum();
-        const base64String = btoa(
-          String.fromCharCode(...new Uint8Array(uint8Array))
-        );
-        const dataUrl = `data:application/pdf;base64,${base64String}`;
-        setPdfDataUrl(dataUrl);
-      } catch (error) {
-        console.error('Error generating PDF:', error);
-      }
-    };
-    generatePdf();
-  }, [storedResults, setStoredResults, coursework]); // Add setStoredResults here
+  window.addEventListener('resize', handleResize);
+
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, []);
+
+
+
+useEffect(() => {
+  setEvaluation(dummyEvaluation);
+}, []);
 
   const toggleCriteria = (criteria: string) => {
     setExpandedCriteria(expandedCriteria === criteria ? null : criteria);
@@ -203,7 +193,7 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
                       <p className="text-gray-500">Evaluated on {evaluation.date}</p>
                     </div>
                     <div className="text-right relative">
-                      <Component value={evaluation.overallScore} max={20} />
+                    <Component value={evaluation.overallScore} max={20} color="#3cc186" />
                       <div className="absolute inset-0 flex items-center justify-center text-xl font-bold">
                         {evaluation.overallScore}/20
                       </div>
@@ -217,7 +207,7 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
                   <div>
                     <div className="flex justify-between items-center mb-4">
                       <div className="text-right relative">
-                        <Component value={evaluation.criteriaA} max={20} />
+                        <Component value={evaluation.criteriaA} max={20} color="#3cc186" />
                         <div className="absolute inset-0 flex items-center justify-center text-xl font-bold">
                           {evaluation.criteriaA}/20
                         </div>
@@ -284,7 +274,7 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
                   <div>
                     <div className="flex justify-between items-center mb-4">
                       <div className="text-right relative">
-                        <Component value={evaluation.criteriaB} max={20} />
+                        <Component value={evaluation.criteriaB} max={20} color="#eab308"/>
                         <div className="absolute inset-0 flex items-center justify-center text-xl font-bold">
                           {evaluation.criteriaB}/20
                         </div>
@@ -338,7 +328,7 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
                   <div>
                     <div className="flex justify-between items-center mb-4">
                       <div className="text-right relative">
-                        <Component value={evaluation.criteriaC} max={20} />
+                        <Component value={evaluation.criteriaC} max={20} color="#eab308" />
                         <div className="absolute inset-0 flex items-center justify-center text-xl font-bold">
                           {evaluation.criteriaC}/20
                         </div>
@@ -403,7 +393,7 @@ export default function EvaluationDisplay({ onBack }: { onBack: () => void }) {
         </>
       )}
 
-      <LeftSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <LeftSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}         handleIconClick={handleIconClick} />
       <RightSidebar windowWidth={windowWidth} />
     </div>
   );

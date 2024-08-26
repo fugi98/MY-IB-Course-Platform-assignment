@@ -1,10 +1,12 @@
-
+import React from 'react';
 import MainContent from '@/components/MainContent';
-import '@/styles/globals.css'; 
 
-export default function Home() {
-
+const HomePage: React.FC = () => {
   return (
-    <MainContent />
-  )
-}
+    <div>
+      <MainContent />
+    </div>
+  );
+};
+
+export default HomePage;

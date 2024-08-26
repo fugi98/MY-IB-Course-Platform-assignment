@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { BsGrid3X3Gap } from 'react-icons/bs';
@@ -9,9 +7,10 @@ import { IconType } from 'react-icons';
 interface LeftSidebarProps {
   sidebarOpen: boolean;
   toggleSidebar: () => void;
+  handleIconClick: (link: string) => void; // Ensure this prop is declared
 }
 
-const LeftSidebarContent: React.FC<LeftSidebarProps & { handleIconClick: (link: string) => void }> = ({
+const LeftSidebarContent: React.FC<LeftSidebarProps> = ({
   sidebarOpen,
   toggleSidebar,
   handleIconClick,
